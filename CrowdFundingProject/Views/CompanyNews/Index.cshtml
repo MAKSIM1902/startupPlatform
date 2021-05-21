@@ -1,0 +1,13 @@
+﻿<h2>Company news:</h2>
+<div class="row mt-5 mb-2">
+    @{ 
+        foreach (var comp in Model)
+        { 
+            <form class="col-lg-auto" style=" border: inset; border-width: 5px">
+                <img src="@comp.ImageLink" height="200" alt="@comp.NewsName" style="margin-top: 5px;" />
+                <p>Short Description: @comp.Description</p>
+                <p>Date post: @comp.DatePost</p>
+            </form>
+        }
+    }
+</div>

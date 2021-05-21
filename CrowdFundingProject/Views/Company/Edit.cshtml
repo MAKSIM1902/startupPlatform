@@ -1,0 +1,29 @@
+﻿@model CrowdFundingProject.Models.Company
+@{ 
+    ViewBag.Title = "Редактирование компании";
+}
+<form asp-action="edit" asp-controller="company" asp-route-id="@Model.CompanyId">
+    <div class="form-group">
+        <label asp-for="Name" class="control-label">Имя</label>
+        <input type="text" asp-for="Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="ShortDescription" class="control-label">Short Description</label>
+        <input type="text" asp-for="ShortDescription" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="LongDescription" class="control-label">LongDescription</label>
+        <input type="text" asp-for="LongDescription" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="MoneyNeeded" class="control-label">Money Needed</label>
+        <input type="text" asp-for="MoneyNeeded" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="EndDate" class="control-label">Date of end</label>
+        <input type="text" asp-for="EndDate" class="form-control" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Сохранить" class="btn btn-default" />
+    </div>
+</form>

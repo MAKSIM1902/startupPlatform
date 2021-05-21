@@ -1,0 +1,32 @@
+﻿@model IEnumerable<CrowdFundingProject.Models.Company>
+<p>@User.Identity.Name</p>
+<h2>List of your companies:</h2>
+<table class="table">
+    @{
+        foreach (var userComp in Model)
+        {
+            if (userComp.UserId == User.Identity.Name)
+            {
+                <p>@userComp.Name</p>
+                <tr>
+                    <td>@userComp.Name</td>
+                    <td>
+                        <form asp-controller="Company" asp-action="Delete" asp-route-id="@userComp.CompanyId" method="post">
+                            <button type="submit" class="btn btn-sm btn-danger">
+                                Delete
+                            </button>
+                        </form>
+                        <form asp-controller="Company" asp-action="Edit" asp-route-id="@userComp.CompanyId" method="get">
+                            <button type="submit" class="btn btn-sm btn-danger">
+                                Edit
+                            </button>
+                        </form>
+                    </td>
+                  
+                </tr>
+            }
+
+        }
+
+    }
+</table>

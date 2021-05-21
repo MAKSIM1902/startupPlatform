@@ -1,0 +1,18 @@
+﻿@model CrowdFundingProject.Data.Models.Bonus
+<h2>Bonus creation.</h2>
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.Name, "Name")
+    <br />
+    @Html.EditorFor(model => model.Name)
+    <br />
+    <br />
+    @Html.LabelFor(model => model.Description, "Description", new { cols = 20, rows = 30 })
+    <br />
+    @Html.EditorFor(model => model.Description)
+    <br />
+    <div class="editor-field invisible">
+        @Html.EditorFor(model => model.MoneySum)
+    </div>
+    <input type="submit" value="Create" />
+}
