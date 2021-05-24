@@ -1,0 +1,41 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+@model List<Сrowdfunding.Models.ViewModels.ManageRolesViewModel>
+@{
+}
+<form method="post">
+    <div class="card">
+        <div class="header">
+            <strong>User:</strong> @ViewBag.UserName.
+        </div>
+        <div class="card-body">
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <div class="form-check m-1">
+                    <input type="hidden" asp-for="@Model[i].RoleId" />
+                    <input type="hidden" asp-for="@Model[i].RoleName" />
+                    @if (await UserManager.IsInRoleAsync(Model[i].User, Model[i].RoleName))
+                    {
+                        Model[i].Selected = true;
+                    }
+                    @if (Model[i].RoleName.Equals("Admin") || Model[i].RoleName.Equals("User"))
+                    {
+                        <input asp-for="@Model[i].Selected" class="form-check-input" disabled />
+                    }
+                    else
+                    {
+                        <input asp-for="@Model[i].Selected" class="form-check-input" />
+                    }
+                    <label class="form-check-label" asp-for="@Model[i].Selected">
+                        @Model[i].RoleName
+                    </label>
+                </div>
+            }
+            <div asp-validation-summary="All" class="text-danger"></div>
+        </div>
+        <div class="card-footer">
+            <input type="submit" value="Update" class="btn btn-primary" style="width:auto" />
+            <a asp-controller="RoleManager" asp-action="Index" asp-route-id="@ViewBag.userId" class="btn btn-primary" style="width:auto">Cancel</a>
+        </div>
+    </div>
+</form>

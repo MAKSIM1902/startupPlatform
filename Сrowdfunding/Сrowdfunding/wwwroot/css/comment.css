@@ -1,0 +1,14 @@
+﻿.like-btn {
+    border: 0;
+    background: transparent;
+}
+.single-comment {
+    border: 2px solid;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+.delete-btn {
+    border: 0;
+    background: transparent;
+    max-height: 20px;
+}

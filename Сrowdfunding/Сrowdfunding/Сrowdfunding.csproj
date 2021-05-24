@@ -1,0 +1,60 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>aspnet-Сrowdfunding-6AECFC69-1D72-4612-8E1C-367766F181CF</UserSecretsId>
+    <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20210501014754_Campaign-first.cs" />
+    <Compile Remove="Data\Migrations\20210501014754_Campaign-first.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210501015020_Campaign-first.cs" />
+    <Compile Remove="Data\Migrations\20210501015020_Campaign-first.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210501025206_Category1.cs" />
+    <Compile Remove="Data\Migrations\20210501025206_Category1.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210506023101_Comment1.cs" />
+    <Compile Remove="Data\Migrations\20210506023101_Comment1.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210506041015_Comment2.cs" />
+    <Compile Remove="Data\Migrations\20210506041015_Comment2.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210508011149_test.cs" />
+    <Compile Remove="Data\Migrations\20210508011149_test.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210514195829_Rating1.cs" />
+    <Compile Remove="Data\Migrations\20210514195829_Rating1.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210515001717_AppUser1.cs" />
+    <Compile Remove="Data\Migrations\20210515001717_AppUser1.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210515003939_User2.cs" />
+    <Compile Remove="Data\Migrations\20210515003939_User2.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210515004537_User3.cs" />
+    <Compile Remove="Data\Migrations\20210515004537_User3.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210515004633_User3.cs" />
+    <Compile Remove="Data\Migrations\20210515004633_User3.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210516001738_Deploy3.cs" />
+    <Compile Remove="Data\Migrations\20210516001738_Deploy3.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210516001943_Deploy3.cs" />
+    <Compile Remove="Data\Migrations\20210516001943_Deploy3.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210516002022_Deploy3.cs" />
+    <Compile Remove="Data\Migrations\20210516002022_Deploy3.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CloudinaryDotNet" Version="1.15.1" />
+    <PackageReference Include="Google.Cloud.Storage.V1" Version="3.4.0" />
+    <PackageReference Include="jQuery.Ajax.Unobtrusive" Version="2.0.20710" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="3.1.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Twitter" Version="3.1.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.13" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.13">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.8" />
+    <PackageReference Include="Microsoft.jQuery.Unobtrusive.Ajax" Version="3.2.6" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+    <PackageReference Include="Moment.js" Version="2.29.1" />
+  </ItemGroup>
+
+</Project>

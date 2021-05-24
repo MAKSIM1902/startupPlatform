@@ -1,0 +1,40 @@
+﻿@page
+@model Сrowdfunding.Areas.Identity.Pages.Account.Manage.CampaignEditModel
+@{
+}
+<form method="post" id="editForm">
+    <fieldset>
+        <div class="form-group">
+            <label>Category:</label>
+            <select name="CategoryId">
+                @foreach (var category in Model.CampaignEdit.Categories)
+                {
+                    @if (category.Id == Model.CampaignEdit.Campaign.CategoryId)
+                    {
+                        <option selected="selected" value="@category.Id">@category.Name</option>
+                    }
+                    else
+                    {
+                        <option value="@category.Id">@category.Name</option>
+                    }
+
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Name:</label>
+            <input type="text" class="form-control" name="Name" value="@Model.CampaignEdit.Campaign.Name" />
+        </div>
+        <div class="form-group">
+            <label>Short description:</label>
+            <input type="text" class="form-control" name="ShortDescription" value="@Model.CampaignEdit.Campaign.ShortDescription"/>
+        </div>
+        <div>
+            <label>Story:</label>
+            <textarea id="editor1" class="form-control" style="resize: none;" name="Story">
+                @Model.CampaignEdit.Campaign.Story
+            </textarea>
+        </div>
+        <input type="submit" class="btn btn-success" value="Edit">
+    </fieldset>
+</form>

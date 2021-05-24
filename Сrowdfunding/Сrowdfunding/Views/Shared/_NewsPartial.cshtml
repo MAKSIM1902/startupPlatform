@@ -1,0 +1,30 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+@model News
+@{
+}
+<div class="col-8">
+    <div class="row justify-content-between">
+        <div>
+            <time>@Model.PostDate</time>
+            <p>@Model.Author</p>
+        </div>
+        @if (User.IsInRole("Admin") || User.IsInRole("Moderator") || UserManager.GetUserAsync(User).Result.Email == Model.Author)
+        {
+            <form method="post" asp-action="DeleteNews" asp-controller="Home"
+                  data-ajax="true" data-ajax-mode="replace" data-ajax-update="#newsSection" enctype="multipart/form-data">
+                <input type="hidden" name="CommentId" value="@Model.NewsId" />
+                <input type="hidden" name="CampaignId" value="@Model.CampaignId" />
+                <button class="delete-btn">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
+            </form>
+        }
+
+    </div>
+    <div>
+        <h3>@Model.Title</h3>
+        @Model.NewsContent
+    </div>
+    <hr />
+</div>

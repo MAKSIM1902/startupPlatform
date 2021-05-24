@@ -1,0 +1,10 @@
+﻿@model Сrowdfunding.Models.ViewModels.SupportViewModel
+@{
+}
+@foreach (var reward in Model.Rewards)
+{
+    if (reward.CampaignId == Model.Campaign.Id)
+    {
+        @await Html.PartialAsync("_RewardPartial", (reward, Model.Campaign))
+    }
+}

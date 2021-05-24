@@ -1,0 +1,54 @@
+﻿@page
+@model Сrowdfunding.Areas.Identity.Pages.Account.Manage.CampaignsModel
+@inject Сrowdfunding.Data.ApplicationDbContext context
+@{
+}
+<table class="table table-bordered table-striped ">
+    <thead class="thead-dark">
+        <tr>
+            <th>Creator</th>
+            <th>Title</th>
+            <th>Begin date</th>
+            <th>End date</th>
+            <th>Category</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Campaign.Campaigns)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-controller="Home" asp-route-id="@item.Id">
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BeginTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => context.Categories.Find(item.CategoryId).Name)
+                </td>
+                <td>
+                    <form method="post">
+                        <a class="btn btn-success" asp-page="CampaignEdit" asp-route-id="@item.Id">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        </a>
+                    </form>
+                    <form method="post">
+                        <button asp-page-handler="delete" asp-route-id="@item.Id" id="btnDelete" class="btn bg-danger">
+                            <i class="fa fa-window-close-o" aria-hidden="true"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

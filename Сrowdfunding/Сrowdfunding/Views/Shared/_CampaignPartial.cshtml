@@ -1,0 +1,22 @@
+﻿@model Сrowdfunding.Models.Campaign
+@{
+}
+<section class="col-12 col-md-6 col-lg-4 text-center single-unit">
+    <div class="inside-container">
+        <div class="unit-img">
+            <img height="150" src="@Url.Content(Model.ImageUrl)" />
+        </div>
+        <div class="text-left">
+            <b>
+                <a asp-controller="Home" asp-action="Details" asp-route-id="@Model.Id">
+                    @Model.Name
+                </a>                
+            </b>
+            <p>@Model.Author</p>
+            <div>Goal: @Model.TotalSum$</div>
+            <div>Remain: @Model.RemainSum$</div>
+            <div>Start: @Model.BeginTime</div>
+            <div>End: @Model.EndTime</div>
+        </div>
+    </div>
+</section>

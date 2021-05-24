@@ -1,0 +1,96 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+@model Сrowdfunding.Models.ViewModels.CommentViewModel
+@{
+}
+<article>
+    <section class="row justify-content-between">
+        <div class="col-12 col-md-6">
+            <img class="unit-img" height="250" src="@Url.Content(Model.Campaign.ImageUrl)" />
+        </div>
+        <div class="col-12 col-md-6">
+            <div id="detail-title" class="row justify-content-between">
+                <h2>@Model.Campaign.Name</h2>
+                <div id="rate-form">
+                    @await Html.PartialAsync("_RatingPartial", Model.Rating)
+                </div>
+            </div>
+
+
+            <p>@Model.Campaign.ShortDescription</p>
+            <div>
+                @Model.Campaign.Author
+            </div>
+            <div>
+                <b>Goal: @Model.Campaign.TotalSum$</b>
+            </div>
+            <div>
+                <b>Remain @Model.Campaign.RemainSum$</b>
+            </div>
+
+            <div>
+                <form method="get" asp-controller="Home" asp-action="Support" asp-route-id="@Model.Campaign.Id">
+                    <button>Support</button>
+                </form>
+                @if (UserManager.GetUserAsync(User).Result != null && UserManager.GetUserAsync(User).Result.UserName == Model.Campaign.Author)
+                {
+                    <form method="get" asp-controller="Home" asp-action="Rewards" asp-route-id="@Model.Campaign.Id">
+                        <button>Add rewards</button>
+                    </form>
+                }
+            </div>
+            @if (Model.Campaign.Ended)
+            {
+                <div>
+                    <b>Campaign was ended!</b>
+                </div>
+            }
+        </div>
+
+    </section>
+    <section id="story-section">
+        <h2>Story</h2>
+        @Html.Raw(Model.Campaign.Story)
+    </section>
+    <hr class="hr-tabs-top" />
+    <input class="radio" id="one" name="group" type="radio" checked />
+    <input class="radio" id="two" name="group" type="radio" />
+    <section class="tabs">
+        <label class="tab" id="one-tab" for="one">Comments</label>
+        <label class="tab" id="two-tab" for="two">News</label>
+    </section>
+    <hr class="hr-tabs-bottom" />
+    <article class="panels">
+        <section id="commentSection" class="panel one-panel">
+            <h2>Comments</h2>
+            <form method="post" asp-action="Details" asp-controller="Home"
+                  data-ajax="true" data-ajax-mode="replace" data-ajax-update="#commentSection" enctype="multipart/form-data">
+                <input type="hidden" name="CampaignId" value="@Model.Campaign.Id" />
+                <textarea class="form-control" name="Content"></textarea>
+                <input type="submit" value="Submit" />
+            </form>
+            <div id="comments"></div>
+        </section>
+        <section id="newsSection" class="panel two-panel">
+            <h2>News</h2>
+            @if (UserManager.GetUserAsync(User).Result != null)
+            {
+                @if (User.IsInRole("Admin") || User.IsInRole("Moderator") || UserManager.GetUserAsync(User).Result.Email == Model.Campaign.Author)
+                {
+                    <form method="post" asp-action="AddNews" asp-controller="Home"
+                          data-ajax="true" data-ajax-mode="replace" data-ajax-update="#newsSection" enctype="multipart/form-data">
+                        <input type="hidden" name="CampaignId" value="@Model.Campaign.Id" />
+                        <input type="text" class="form-control" name="Title" />
+                        <textarea class="form-control" name="NewsContent"></textarea>
+                        <input type="submit" value="Submit" />
+                    </form>
+                }
+            }
+
+
+            <div id="news"></div>
+        </section>
+
+        @*@await Html.PartialAsync("~/Views/Home/CommentList.cshtml", Model)*@
+    </article>
+</article>

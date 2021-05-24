@@ -1,0 +1,56 @@
+﻿.single-unit {
+    margin-bottom: 50px;
+}
+.inside-container {
+    padding: 0 15px 0 23%;
+}
+.unit-img {
+    border: 2px solid;
+    border-radius: 8px;
+}
+.unit-img img {
+	width: 100%;
+	border-radius: 8px;
+}
+#story-section {
+	margin-top: 50px;
+}
+#story-section img {
+	max-height: 800px;
+	max-width: 800px;
+}
+.rating-area {
+	display: flex;
+	flex-direction: row-reverse;
+	width: 210px;
+}
+.rating-area:not(:checked) > input {
+	opacity: 0;
+    width: 0;
+    height: 0;
+}
+.rating-area:not(:checked) .star-icon {
+	cursor: pointer;
+	font-size: 24px;
+	color: lightgray;
+	text-shadow: 1px 1px #bbb;
+}
+.rating-area:not(:checked) .star-icon:before {
+	content: '★';
+}
+.rating-area > input:checked ~ .star-icon {
+	color: gold;
+	text-shadow: 1px 1px #c60;
+}
+.rating-area:not(:checked) > .star-icon:hover,
+.rating-area:not(:checked) > .star-icon:hover ~ .star-icon {
+	color: gold;
+}
+.rating-area > input:checked + .star-icon:hover,
+.rating-area > input:checked + .star-icon:hover ~ .star-icon,
+.rating-area > input:checked ~ .star-icon:hover,
+.rating-area > input:checked ~ .star-icon:hover ~ .star-icon,
+.rating-area > .star-icon:hover ~ input:checked ~ .star-icon {
+	color: gold;
+	text-shadow: 1px 1px goldenrod;
+}

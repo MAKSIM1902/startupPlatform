@@ -1,0 +1,54 @@
+﻿@using Сrowdfunding.Data 
+@model Rating
+@inject ApplicationDbContext _context
+@{
+    var rateList = _context.Ratings.Where(r => r.CampaignId == Model.CampaignId).ToList();
+    int rateCount = rateList.Count;
+    int rateResult = 0;
+    foreach (var mark in rateList)
+    {
+        rateResult += mark.Rate;
+    }
+    if (rateCount > 0) rateResult /= rateCount;
+}
+
+<form method="post" asp-action="Rate" asp-controller="Home"
+      data-ajax="true" data-ajax-mode="replace" data-ajax-update="#rate-form" enctype="multipart/form-data">
+    <input type="hidden" name="CampaignId" value="@Model.CampaignId" />
+    <div class="rating-area review-label">
+        <input type="submit" id="star-5" asp-for="Rate" value="5">
+        @if (rateResult >= 4.5)
+        {
+            <input type="radio" checked />
+        }
+        <label class="star-icon" for="star-5" title="«5»"></label>
+
+        <input type="submit" id="star-4" asp-for="Rate" value="4">
+        @if (rateResult >= 3.5 && rateResult < 4.5)
+        {
+            <input type="radio" checked />
+        }
+        <label class="star-icon" for="star-4" title="«4»"></label>
+
+        <input type="submit" id="star-3" asp-for="Rate" value="3">
+        @if (rateResult >= 2.5 && rateResult < 3.5)
+        {
+            <input type="radio" checked />
+        }
+        <label class="star-icon" for="star-3" title="«3»"></label>
+
+        <input type="submit" id="star-2" asp-for="Rate" value="2">
+        @if (rateResult >= 1.5 && rateResult < 2.5)
+        {
+            <input type="radio" checked />
+        }
+        <label class="star-icon" for="star-2" title="«2»"></label>
+
+        <input type="submit" id="star-1" asp-for="Rate" value="1">
+        @if (rateResult >= 0.5 && rateResult < 1.5)
+        {
+            <input type="radio" checked />
+        }
+        <label class="star-icon" for="star-1" title="«1»"></label>
+    </div>
+</form>

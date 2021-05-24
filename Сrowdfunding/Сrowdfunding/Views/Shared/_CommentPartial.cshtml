@@ -1,0 +1,47 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+@model Comment
+@{
+}
+<div class="col-8 single-comment">
+    <div class="row justify-content-between">
+        <div>
+            <time>@Model.PostDate</time>
+            <p>@Model.Author</p>
+        </div>
+        @if (User.IsInRole("Admin") || User.IsInRole("Moderator") || UserManager.GetUserAsync(User).Result.Email == Model.Author)
+        {
+            <form method="post" asp-action="DeleteComment" asp-controller="Home"
+                  data-ajax="true" data-ajax-mode="replace" data-ajax-update="#commentSection" enctype="multipart/form-data">
+                <input type="hidden" name="CommentId" value="@Model.CommentId" />
+                <input type="hidden" name="CampaignId" value="@Model.CampaignId" />
+                <button class="delete-btn">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
+            </form>
+        }
+
+    </div>
+    <div>
+        @Model.Content
+    </div>
+    <hr />
+    <form class="d-inline-block" method="post" action="/Home/Like"
+          data-ajax="true" data-ajax-mode="replace" data-ajax-update="#commentSection" enctype="multipart/form-data">
+        <input type="hidden" name="CommentId" value="@Model.CommentId" />
+        <input type="hidden" name="CampaignId" value="@Model.CampaignId" />
+        <span>@Model.LikesCount</span>
+        <button class="like-btn">
+            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+        </button>
+    </form>
+    <form class="d-inline-block" method="post" action="/Home/Dislike"
+          data-ajax="true" data-ajax-mode="replace" data-ajax-update="#commentSection" enctype="multipart/form-data">
+        <input type="hidden" name="CommentId" value="@Model.CommentId" />
+        <input type="hidden" name="CampaignId" value="@Model.CampaignId" />
+        <span>@Model.DislikesCount</span>
+        <button class="like-btn">
+            <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
+        </button>
+    </form>
+</div>

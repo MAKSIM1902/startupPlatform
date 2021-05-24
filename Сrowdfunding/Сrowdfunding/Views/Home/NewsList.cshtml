@@ -1,0 +1,25 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+@model Сrowdfunding.Models.ViewModels.NewsViewModel
+@{
+}
+@if (UserManager.GetUserAsync(User).Result != null)
+{
+    @if (User.IsInRole("Admin") || User.IsInRole("Moderator") || UserManager.GetUserAsync(User).Result.Email == Model.Campaign.Author)
+    {
+        <form method="post" asp-action="AddNews" asp-controller="Home"
+              data-ajax="true" data-ajax-mode="replace" data-ajax-update="#newsSection" enctype="multipart/form-data">
+            <input type="hidden" name="CampaignId" value="@Model.Campaign.Id" />
+            <input type="text" class="form-control" name="Title" />
+            <textarea class="form-control" name="NewsContent"></textarea>
+            <input type="submit" value="Submit" />
+        </form>
+    }
+}
+@foreach (var news in Model.News)
+{
+    if (news.CampaignId == Model.Campaign.Id)
+    {
+        @await Html.PartialAsync("_NewsPartial", news)
+    }
+}
